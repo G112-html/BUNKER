@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>undergroundtam</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    var rooms =[
+    "폐쇠된 광산이", "숙소가", "폭탄저장고가", "자판기가", "지하 탐색기가",
+    "폐쇠된 광산이", "숙소가", "폭탄저장고가", "자판기가", "지하 탐색기가",
+    "폐쇠된 광산이", "숙소가", "폭탄저장고가", "자판기가", "지하 탐색기가",
+    "폐쇠된 광산이", "숙소가", "폭탄저장고가", "자판기가", "지하 탐색기가",
+    "식품저장고가", "빈 방이", "금고가", "고장난 라디오가",
+    "식품저장고가", "빈 방이", "금고가", "고장난 라디오가",
+    "식품저장고가", "빈 방이", "금고가", "고장난 라디오가",
+    "발전기가", "폐쇠된 고급광산이", "발전기가", "폐쇠된 고급광산이", "시체가"
+    ];
+    var xnum = [1,2,3,4,5];
+    var ynum = [1,2,3,4,5,6,7,8];
+    var usednum = [256];
+    var serched = {
+      room: "압축기가",
+      x:3,
+      y:4
+    };
+
+    var serching = function (){
+      var random = Math.floor(Math.random()*rooms.length);
+      serched.room = rooms[random];
+      rooms.splice(random,1);
+      if (rooms.length===0){
+        alert("탐색이 종료되었습니다. 그만 누르세요.");
+    } else {
+        do {
+            serched.x = xnum[Math.floor(Math.random()*xnum.length)];
+            serched.y = ynum[Math.floor(Math.random()*ynum.length)];
+          }while (usednum.includes(Math.pow(serched.x+1, serched.y)));
+        usednum.unshift((Math.pow(serched.x+1, serched.y)));
+        alert(
+          '벙커좌표 x='+ serched.x +", y=" + serched.y +"에서 "
+          +serched.room +" 탐색되었습니다."
+        );
+        console.log(serched);
+      };
+  };
+
+  alert(
+    '벙커좌표 x='+ serched.x +", y=" + serched.y +"에서 "
+    +serched.room +" 탐색되었습니다."
+  );
+  console.log(serched);
+
+  serched.room = "벙커노트가";
+  serched.x = 5;
+  serched.y = 8;
+  alert(
+    '벙커좌표 x='+ serched.x +", y=" + serched.y +"에서 "
+    +serched.room +" 탐색되었습니다."
+  );
+  console.log(serched);
+
+  </script>
+
+
+  <input type="button" value="탐색하기" onclick="
+    serching();
+  ">
+
+  <!--
+  <a href="serching.html" style="background-color:powderblue;color:black">새로고침</a>
+  <input class="color" type="button" value="밤이 되었습니다" onclick="
+  var target = document.querySelector('body')
+    if (this.value === '밤이 되었습니다'){
+    target.style.backgroundColor = 'black';
+    target.style.color = 'white';
+    this.value = '고개를 들어 주세요';
+  } else {
+    target.style.backgroundColor = 'white';
+    target.style.color = 'black';
+    this.value ='밤이 되었습니다';
+    }
+  ">-->
+
+
+</body>
+
+</html>
